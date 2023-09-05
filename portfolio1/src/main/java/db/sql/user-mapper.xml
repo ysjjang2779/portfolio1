@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+<entry key="loginMember">
+<!-- 로그인 -->
+SELECT
+       USER_NO
+     , USER_ID
+     , USER_PWD
+     , USER_NAME
+     , USER_BIRTH
+     , C.CATEGORY_NAME "INTEREST_MOVIE"
+     , D.CATEGORY_NAME "INTEREST_DISPLAY"
+     , E.CATEGORY_NAME "INTEREST_SHOW"
+     , EMAIL
+     , PHONE
+     , GRADE_NAME
+     , STATUS
+  FROM USER_INFO
+  JOIN CATEGORY_INFO C ON (INTEREST_MOVIE = C.CATEGORY_TYPE)
+  JOIN CATEGORY_INFO D ON (INTEREST_DISPLAY = D.CATEGORY_TYPE)
+  JOIN CATEGORY_INFO E ON (INTEREST_SHOW = E.CATEGORY_TYPE)
+  JOIN GRADE G USING(GRADE_NO)
+ WHERE USER_ID = ?
+   AND USER_PWD = ?
+   AND STATUS = 'Y'
+</entry>
+<entry key="insertUser">
+<!-- 회원가입 -->
+	INSERT 
+	  INTO USER_INFO 
+	     (
+	       USER_NO
+	     , USER_ID
+	     , USER_PWD
+	     , USER_NAME
+	     , USER_BIRTH
+	     , INTEREST_MOVIE
+	     , INTEREST_DISPLAY
+	     , INTEREST_SHOW
+	     , EMAIL
+	     , PHONE
+	     , GRADE_NO
+	     , STATUS
+	     )
+	VALUES 
+	     (
+	       SEQ_UNO.NEXTVAL
+	     , ?
+	     , ?
+	     , ?
+	     , ?
+	     , ?
+	     , ?
+	     , ?
+	     , ?
+	     , ?
+	     , 1
+	     ,'Y')
+</entry>
+<entry key="findIdWithEmail">
+<!-- 이멜로 아디찾기 -->
+SELECT
+       USER_NO
+     , USER_ID
+     , USER_PWD
+     , USER_NAME
+     , USER_BIRTH
+     , C.CATEGORY_NAME  "INTEREST_MOVIE"
+     , D.CATEGORY_NAME "INTEREST_DISPLAY"
+     , E.CATEGORY_NAME "INTEREST_SHOW"
+     , EMAIL
+     , PHONE
+     , GRADE_NAME
+     , STATUS
+  FROM USER_INFO
+  JOIN CATEGORY_INFO C ON (INTEREST_MOVIE = C.CATEGORY_TYPE)
+  JOIN CATEGORY_INFO D ON (INTEREST_DISPLAY = D.CATEGORY_TYPE)
+  JOIN CATEGORY_INFO E ON (INTEREST_SHOW = E.CATEGORY_TYPE)
+  JOIN GRADE G USING(GRADE_NO)
+ WHERE USER_PWD = ?
+   AND USER_BIRTH = ?
+   AND EMAIL = ?
+</entry>
+<entry key="findIdWithPhone">
+<!-- 폰으로 아디찾기 -->
+SELECT
+       USER_NO
+     , USER_ID
+     , USER_PWD
+     , USER_NAME
+     , USER_BIRTH
+     , C.CATEGORY_NAME  "INTEREST_MOVIE"
+     , D.CATEGORY_NAME "INTEREST_DISPLAY"
+     , E.CATEGORY_NAME "INTEREST_SHOW"
+     , EMAIL
+     , PHONE
+     , GRADE_NAME
+     , STATUS
+  FROM USER_INFO
+  JOIN CATEGORY_INFO C ON (INTEREST_MOVIE = C.CATEGORY_TYPE)
+  JOIN CATEGORY_INFO D ON (INTEREST_DISPLAY = D.CATEGORY_TYPE)
+  JOIN CATEGORY_INFO E ON (INTEREST_SHOW = E.CATEGORY_TYPE)
+  JOIN GRADE G USING(GRADE_NO)
+ WHERE USER_PWD = ?
+   AND USER_BIRTH = ?
+   AND PHONE = ?
+</entry>
+<entry key="findPwdWithEmail">
+<!-- 이멜로 비번찾기 -->
+SELECT
+       USER_NO
+     , USER_ID
+     , USER_PWD
+     , USER_NAME
+     , USER_BIRTH
+     , C.CATEGORY_NAME  "INTEREST_MOVIE"
+     , D.CATEGORY_NAME "INTEREST_DISPLAY"
+     , E.CATEGORY_NAME "INTEREST_SHOW"
+     , EMAIL
+     , PHONE
+     , GRADE_NAME
+     , STATUS
+  FROM USER_INFO
+  JOIN CATEGORY_INFO C ON (INTEREST_MOVIE = C.CATEGORY_TYPE)
+  JOIN CATEGORY_INFO D ON (INTEREST_DISPLAY = D.CATEGORY_TYPE)
+  JOIN CATEGORY_INFO E ON (INTEREST_SHOW = E.CATEGORY_TYPE)
+  JOIN GRADE G USING(GRADE_NO)
+ WHERE USER_ID = ?
+   AND USER_BIRTH = ?
+   AND EMAIL = ?
+</entry>
+<entry key="findPwdWithPhone">
+<!-- 폰으로 비번찾기 -->
+SELECT
+       USER_NO
+     , USER_ID
+     , USER_PWD
+     , USER_NAME
+     , USER_BIRTH
+     , C.CATEGORY_NAME  "INTEREST_MOVIE"
+     , D.CATEGORY_NAME "INTEREST_DISPLAY"
+     , E.CATEGORY_NAME "INTEREST_SHOW"
+     , EMAIL
+     , PHONE
+     , GRADE_NAME
+     , STATUS
+  FROM USER_INFO
+  JOIN CATEGORY_INFO C ON (INTEREST_MOVIE = C.CATEGORY_TYPE)
+  JOIN CATEGORY_INFO D ON (INTEREST_DISPLAY = D.CATEGORY_TYPE)
+  JOIN CATEGORY_INFO E ON (INTEREST_SHOW = E.CATEGORY_TYPE)
+  JOIN GRADE G USING(GRADE_NO)
+ WHERE USER_ID = ?
+   AND USER_BIRTH = ?
+   AND PHONE = ?
+</entry>
+<entry key="changePwd">
+<!-- 비번 변경 -->
+UPDATE USER_INFO
+   SET USER_PWD = ?
+ WHERE USER_NO = ?
+   AND USER_ID = ?
+   AND USER_PWD = ?
+</entry>
+
+<entry key="updateUser">
+	UPDATE USER_INFO
+	   SET USER_NAME = ?
+	     , INTEREST_MOVIE = ?
+	     , INTEREST_DISPLAY = ?
+	     , INTEREST_SHOW = ?
+	     , EMAIL = ?
+	     , PHONE = ?
+	 WHERE USER_NO = ?
+</entry>
+
+<entry key="selectUser">
+	SELECT
+	       USER_NO
+	     , USER_ID
+	     , USER_PWD
+	     , USER_NAME
+	     , TO_CHAR(TO_DATE(USER_BIRTH, 'RR/MM/DD'), 'RRRR-MM-DD') "USER_BIRTH"
+	     , M.CATEGORY_NAME "INTEREST_MOVIE"
+	     , D.CATEGORY_NAME "INTEREST_DISPLAY"
+	     , S.CATEGORY_NAME "INTEREST_SHOW"
+	     , EMAIL
+	     , PHONE
+	     , GRADE_NAME
+	     ,STATUS
+	  FROM USER_INFO
+	  JOIN CATEGORY_INFO M ON (INTEREST_MOVIE = M.CATEGORY_TYPE)
+	  JOIN CATEGORY_INFO D ON (INTEREST_DISPLAY = D.CATEGORY_TYPE)
+	  JOIN CATEGORY_INFO S ON (INTEREST_SHOW = S.CATEGORY_TYPE)
+	  JOIN GRADE USING (GRADE_NO)
+	 WHERE USER_NO = ?
+	   AND STATUS = 'Y'
+</entry>
+
+<entry key="deleteUser">
+	UPDATE USER_INFO
+	    SET STATUS = 'N'
+	  WHERE USER_NO = ?
+</entry>
+
+<entry key="updatePwd">
+	UPDATE USER_INFO
+	    SET USER_PWD = ?
+	  WHERE USER_NO = ?
+</entry>
+
+<entry key="idCheck">
+<!--  아이디 체크용 -->
+	SELECT 
+	       COUNT(*) COUNT
+	  FROM USER_INFO
+	 WHERE USER_ID = ?
+</entry>
+</properties>

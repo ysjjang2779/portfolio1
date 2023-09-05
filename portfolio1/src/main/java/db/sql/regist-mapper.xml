@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="getMovieSelectBoxList">
+SELECT CATEGORY_TYPE, CATEGORY_NAME
+FROM CATEGORY_INFO
+WHERE CATEGORY_NAME LIKE '%(영화)'
+</entry>
+<entry key="getDisplaySelectBoxList">
+SELECT CATEGORY_TYPE, CATEGORY_NAME
+FROM CATEGORY_INFO
+WHERE CATEGORY_NAME LIKE '%(전시)'
+</entry>
+<entry key="getShowSelectBoxList">
+SELECT CATEGORY_TYPE, CATEGORY_NAME
+FROM CATEGORY_INFO
+WHERE CATEGORY_NAME LIKE '%(공연)'
+</entry>
+<entry key="selectLastPno">
+select MAX(PRODUCT_NO) "NUM" FROM PRODUCT
+</entry>
+<entry key="insertProduct">
+INSERT INTO PRODUCT
+(PRODUCT_NO, CATEGORY_TYPE, PRODUCT_TITLE, LOCAL_NO, ADDRESS, START_PERIOD, END_PERIOD, PRODUCT_LEVEL, RUN_TIME, PRICE)
+VALUES
+(SEQ_PNO.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+</entry>
+<entry key="insertImg">
+INSERT INTO PRODUCT_IMG
+(PRODUCT_NO, POSTER_NAME, DETAIL1_NAME, DETAIL2_NAME, DETAIL3_NAME, DETAIL4_NAME, DETAIL5_NAME, IMAGE_PATH)
+VALUES
+(?, ?, ?, ?, ?, ?, ?, ?)
+</entry>
+<entry key="insertScreenInfo">
+INSERT INTO SCREENING_INFO
+(PRODUCT_NO, SCREENING_DATE, SCREENING_DAY_TIME, SCREENING_NIGHT_TIME, SCREENING_DAY_SEAT, SCREENING_NIGHT_SEAT)
+VALUES
+(?, ?, ?, ?, ?, ?)
+</entry>
+</properties>

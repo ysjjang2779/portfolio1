@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+<entry key="searchProduct">
+	SELECT 
+		   PRODUCT_NO
+	     , PRODUCT_TITLE
+	     , ADDRESS
+	     , START_PERIOD
+	     , END_PERIOD
+	     , PRICE
+	     , IMAGE_PATH
+	     , POSTER_NAME
+	  FROM PRODUCT
+	  JOIN PRODUCT_IMG USING(PRODUCT_NO)
+	 WHERE PRODUCT_TITLE LIKE ?
+</entry>
+</properties>
