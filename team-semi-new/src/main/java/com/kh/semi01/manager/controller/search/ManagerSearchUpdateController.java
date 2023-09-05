@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.semi01.manager.model.service.SearchService;
 import com.kh.semi01.product.model.vo.Product;
 import com.kh.semi01.product.model.vo.ProductIMG;
+import com.oreilly.servlet.MultipartRequest;
 
 
 /**
@@ -37,7 +38,7 @@ public class ManagerSearchUpdateController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 
         //String savePath = request.getSession().getServletContext().getContext("/resources").getRealPath("");
-        String savePath = "C:\\Users\\mjkim\\Desktop\\team-semi-new\\team-semi-new\\src\\main\\webapp\\resources\\product_upfiles";
+        String savePath = "C:\\Users\\mjkim\\Desktop\\portfolio1\\team-semi-new\\src\\main\\webapp\\resources\\product_upfiles";
         int maxSize = 10 * 1024 * 1024; 
                 
         MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8");
@@ -163,7 +164,7 @@ public class ManagerSearchUpdateController extends HttpServlet {
 	}
 	
 	private void deleteUploadedFile(String fileName) {
-        String savePath = "C:\\Users\\mjkim\\Desktop\\team-semi-new\\team-semi-new\\src\\main\\webapp\\resources\\product_upfiles";
+        String savePath = "C:\\Users\\mjkim\\Desktop\\portfolio1\\team-semi-new\\src\\main\\webapp\\resources\\product_upfiles";
         String filePath = savePath + File.separator + fileName;
         File file = new File(filePath);
 

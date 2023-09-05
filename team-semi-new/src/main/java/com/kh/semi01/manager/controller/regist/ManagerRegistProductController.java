@@ -36,7 +36,7 @@ public class ManagerRegistProductController extends HttpServlet {
     	request.setCharacterEncoding("utf-8");
 
         //String savePath = request.getSession().getServletContext().getContext("/resources").getRealPath("");
-        String savePath = "C:\\Users\\mjkim\\Desktop\\team-semi-new\\team-semi-new\\src\\main\\webapp\\resources\\product_upfiles";
+        String savePath = "C:\\Users\\mjkim\\Desktop\\portfolio1\\team-semi-new\\src\\main\\webapp\\resources\\product_upfiles";
         int maxSize = 10 * 1024 * 1024; 
 
         MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8");
